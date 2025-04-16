@@ -122,34 +122,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
      Set it up here, and set it equal to skyColor.
      Then, load in the skyline texture for our background image. It'll be of type SKTexture,
      with property of imageNamed: "Skyline"
+     Finally, uncomment the rest of the function.
      */
     private func setupSkyline() {
-        backgroundColor = skyColor
         // Load the skyline texture and create its scrolling action
-        let skylineTexture = SKTexture(imageNamed: "Skyline")
-        skylineTexture.filteringMode = .nearest
         
-        let moveSkylineSprite = SKAction.moveBy(x: -skylineTexture.size().width * 2,
-                                                y: 0,
-                                                duration: 0.1 * skylineTexture.size().width * 2)
-        let resetSkylineSprite = SKAction.moveBy(x: skylineTexture.size().width * 2,
-                                                 y: 0,
-                                                 duration: 0)
-        let moveSkylineSpritesForever = SKAction.repeatForever(SKAction.sequence([moveSkylineSprite, resetSkylineSprite]))
         
-        // Calculate the number of skyline sprites required and add them behind other objects
-        let skylineSpriteCount = Int(2 + self.frame.size.width / (skylineTexture.size().width * 2))
-        for i in 0..<skylineSpriteCount {
-            let sprite = SKSpriteNode(texture: skylineTexture)
-            sprite.setScale(2.0)
-            sprite.zPosition = -20
-            sprite.position = CGPoint(
-                x: CGFloat(i) * sprite.size.width,
-                y: sprite.size.height / 2 + SKTexture(imageNamed: "Ground").size().height * 2
-            )
-            sprite.run(moveSkylineSpritesForever)
-            moving.addChild(sprite)
-        }
+//        skylineTexture.filteringMode = .nearest
+//        
+//        let moveSkylineSprite = SKAction.moveBy(x: -skylineTexture.size().width * 2,
+//                                                y: 0,
+//                                                duration: 0.1 * skylineTexture.size().width * 2)
+//        let resetSkylineSprite = SKAction.moveBy(x: skylineTexture.size().width * 2,
+//                                                 y: 0,
+//                                                 duration: 0)
+//        let moveSkylineSpritesForever = SKAction.repeatForever(SKAction.sequence([moveSkylineSprite, resetSkylineSprite]))
+//        
+//        // Calculate the number of skyline sprites required and add them behind other objects
+//        let skylineSpriteCount = Int(2 + self.frame.size.width / (skylineTexture.size().width * 2))
+//        for i in 0..<skylineSpriteCount {
+//            let sprite = SKSpriteNode(texture: skylineTexture)
+//            sprite.setScale(2.0)
+//            sprite.zPosition = -20
+//            sprite.position = CGPoint(
+//                x: CGFloat(i) * sprite.size.width,
+//                y: sprite.size.height / 2 + SKTexture(imageNamed: "Ground").size().height * 2
+//            )
+//            sprite.run(moveSkylineSpritesForever)
+//            moving.addChild(sprite)
+//        }
     }
     
     private func setupDummyNode() {
@@ -202,7 +203,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
          1. The game is not over. That means our bird is moving (the moving.speed variable is nonzero).
          2. The game is over. Our bird is not moving. (else block is sufficient)
          
-         In the first block, we want the following to simulate a bird's flap.
+         In the first block, we want the following logic in order to simulate a bird's flap from a touch.
          First, set the bird's physicsbody's velocity to be zero.
          Then, call the applyImpulse() function on the physics body and pass in CGVector(dx: 0, dy: 14).
          */
@@ -341,9 +342,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Restart the pipe spawning cycle
         startSpawningPipes()
         
-        // Reset the score
-         score = 0
-         scoreLabelNode.text = "\(score)"
+        // ACTIVITY 4 CONTINUED: Reset the score here
+
     }
     
     // MARK: - Update Loop
