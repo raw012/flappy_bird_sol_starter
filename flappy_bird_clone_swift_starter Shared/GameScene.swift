@@ -258,10 +258,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let contactNode = SKNode()
         contactNode.position = CGPoint(x: pipe1.size.width + bird.size.width / 2, y: self.frame.midY)
         contactNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: pipe2.size.width, height: self.frame.height))
-        contactNode.physicsBody?.isDynamic = false
-        contactNode.physicsBody?.categoryBitMask = scoreCategory
-        contactNode.physicsBody?.contactTestBitMask = birdCategory
-        pipePair.addChild(contactNode)
+        /*
+         ACTIVITY 3:
+         Set up contact physics for this invisible "contact" node. This will
+         help us increment our scoring system in the next activity!
+         */
+        
         
         // Run the move-and-remove action and add the pair to the moving container
         pipePair.run(moveAndRemovePipes)
