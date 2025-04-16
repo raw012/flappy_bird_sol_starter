@@ -342,7 +342,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Restart the pipe spawning cycle
         startSpawningPipes()
         
-        // ACTIVITY 4 CONTINUED: Reset the score here
+        // ACTIVITY 5: Reset the score here
 
     }
     
